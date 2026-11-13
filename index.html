@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Занятие: степени окисления (окислительно-восстановительные реакции)</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Yeseva+One&display=swap"><style>
+:root{--honeydew:#E6F5E2;--celadon:#A4E3A4;--lime:#B4D44D;--fern:#337738;--khaki:#282900;--bg:#fff;--paper:#fff;--mist:#F1F9EF;--ink:#282900;--soft:#4B5530;--line:rgba(40,41,0,.16);--on-fern:#F3FBF0;--bad:#B4472F;--bad-soft:#F8DED7;--ok-soft:#D3F0CD;--pc:#B4472F;--ec:#337738;--fd:'Yeseva One',Georgia,serif;--fb:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--fb);overflow-x:hidden}
+h1,h2,h3,p,ul,ol{margin:0}ul,ol{padding:0;list-style:none}
+.wrap{max-width:1040px;margin-inline:auto;padding-inline:16px}
+:focus-visible{outline:3px solid var(--fern);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:999px;border:2px solid var(--fern);background:var(--fern);color:var(--on-fern);font:600 .95rem/1.2 var(--fb);cursor:pointer;transition:background .2s}
+.btn:hover:not(:disabled){background:var(--khaki);border-color:var(--khaki)}
+.btn.ghost{background:transparent;color:var(--fern)}.btn.ghost:hover:not(:disabled){color:var(--on-fern);background:var(--fern);border-color:var(--fern)}
+.btn:disabled{opacity:.45;cursor:default}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:19;background:var(--bg)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:8px;flex-wrap:wrap}
+.mark{width:40px;height:40px;border-radius:13px;background:var(--fern);color:var(--lime);display:grid;place-items:center;font:1.1rem var(--fd);flex:none}
+.bst{flex:1 1 10rem;min-width:0;font-weight:600;font-size:.95rem;line-height:1.3}.bst small{display:block;color:var(--soft);font-weight:500;font-size:.78rem}
+.clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.15rem}.clock.over{color:var(--bad)}
+.hero{padding-block:20px 40px}
+.panel{position:relative;overflow:hidden;isolation:isolate;border-radius:28px;background:var(--mist)}
+.panel::before{content:"";position:absolute;z-index:-1;inset:-30% -25% -30% 30%;background:conic-gradient(from 210deg at 40% 55%,#A4E3A4,#E6F5E2 16%,#B4D44D 36%,#A4E3A4 54%,#337738 72%,#A4E3A4 88%);filter:blur(50px);opacity:.3}
+.hg{display:grid;gap:32px;padding:clamp(22px,5vw,56px)}
+@media(min-width:900px){.hg{grid-template-columns:1.1fr .9fr;align-items:center}}
+h1{font:400 clamp(2.2rem,6vw,4rem)/1.05 var(--fd);margin-bottom:16px;text-wrap:balance}
+.meta{font-weight:600;margin-bottom:14px}
+.facts{display:grid;gap:8px;margin-bottom:22px}.facts li{padding-left:26px;position:relative;font-weight:500}
+.facts li::before{content:"✦";position:absolute;left:0;color:var(--fern)}
+.lab{background:var(--khaki);color:var(--celadon);border-radius:28px;padding:clamp(14px,3vw,24px);display:grid;gap:8px;position:relative;overflow:hidden}
+.lab::after{content:"";position:absolute;inset:auto -20% -40% -20%;height:70%;background:radial-gradient(closest-side,rgba(180,212,77,.22),transparent);pointer-events:none}
+.lab svg{width:100%;height:auto;display:block;max-height:420px}
+.lab .cap{font:400 1.25rem/1.3 var(--fd);color:#E6F5E2;text-align:center}.lab .cap span{color:var(--lime)}
+.agenda{display:grid;gap:8px;max-width:34rem}
+.agenda a{display:grid;grid-template-columns:5rem 1fr;gap:10px;padding:9px 14px;border-radius:14px;background:var(--paper);color:inherit;text-decoration:none;font-weight:500;border:1px solid var(--line)}
+.agenda a:hover{background:var(--celadon)}.agenda b{color:var(--fern);font-variant-numeric:tabular-nums}
+.stage{padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--line);background:#fff}
+.sg{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:0 28px}
+.mins{font:400 1.7rem/1.1 var(--fd);color:var(--fern)}.mins small{display:block;font:600 .75rem var(--fb);color:var(--soft);margin-top:4px}
+.stage.now .mins{color:var(--ink);background:var(--lime);border-radius:14px;padding:8px 12px;align-self:start;width:fit-content}
+.body{display:grid;gap:18px;align-content:start;min-width:0}
+h2{font:400 clamp(1.8rem,4.2vw,2.7rem)/1.1 var(--fd);text-wrap:balance}
+.lead{max-width:40rem;color:var(--soft)}.note{font-size:.95rem;color:var(--soft);max-width:40rem}
+.tt{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fern)}
+.card{background:var(--bg);border-radius:24px;padding:20px;display:grid;gap:12px;border:1px solid var(--line);min-width:0}
+.card h3{font:400 1.4rem/1.2 var(--fd)}
+.card h3 small{display:block;font:600 .82rem var(--fb);color:var(--fern);margin-bottom:4px}
+.key{background:var(--mist);border-radius:16px;padding:12px 16px;font-size:.95rem}
+.ask{background:var(--celadon);border-radius:20px;padding:14px 18px;max-width:40rem}.ask .tt{color:var(--khaki)}
+.warn{background:var(--bad-soft);border-radius:16px;padding:12px 16px;font-size:.95rem}.warn .tt{color:var(--bad)}
+.dt{border:1px solid var(--line);border-radius:14px;padding:10px 16px;background:#fff;font-size:.95rem}.dt summary{cursor:pointer;color:var(--fern);font-weight:600}.dt p{margin-top:8px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:.97rem}
+.tbl th,.tbl td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{background:var(--mist);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fern)}
+.tbl tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .95rem var(--fb);padding:7px 12px;border-radius:999px;border:2px solid var(--line);background:#fff;color:inherit;cursor:pointer;min-width:2.6rem}
+.chip:hover{border-color:var(--fern)}.chip[aria-pressed=true]{background:var(--fern);border-color:var(--fern);color:var(--on-fern);font-weight:600}
+.stagegrid{display:grid;gap:20px;align-items:start}
+@media(min-width:900px){.stagegrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.canvas{background:var(--mist);border:1px solid var(--line);border-radius:28px;padding:10px}
+.canvas svg{width:100%;height:auto;display:block}
+.nums{display:grid;gap:8px}
+.num{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:7px 12px;border-radius:14px;background:var(--mist);font-size:.95rem}
+.num b{font:400 1.5rem/1 var(--fd);min-width:2.4rem;text-align:right;color:var(--fern)}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;cursor:pointer;font:inherit;padding:11px 16px;border-radius:16px;border:2px solid var(--line);background:#fff;color:inherit;width:100%}
+.opt:hover:not(:disabled){border-color:var(--fern)}.opt[aria-pressed=true]{border-color:var(--fern);background:var(--ok-soft)}
+.opt.ok,.opt.ok[aria-pressed=true]{border-color:var(--fern);background:var(--ok-soft);font-weight:600}
+.opt.no,.opt.no[aria-pressed=true]{border-color:var(--bad);background:var(--bad-soft);color:var(--bad);font-weight:600}
+.q{background:#fff;border-radius:24px;padding:20px;display:grid;gap:12px;border:1px solid var(--line)}
+.q.bad{border-color:var(--bad)}
+.q h3{font:600 1.1rem/1.35 var(--fb)}.q h3 small{display:block;color:var(--fern);font-weight:600;font-size:.82rem;margin-bottom:4px}
+.q details{font-size:.95rem}.q summary{cursor:pointer;color:var(--fern);font-weight:600}.q details p{margin-top:8px}
+.q.bad details{background:var(--bad-soft);border-radius:14px;padding:12px 16px}.q.bad summary{color:var(--bad)}
+.rows{display:grid;gap:10px}.sc{font-weight:700}
+.res{background:var(--lime);color:var(--khaki);border-radius:24px;padding:18px 22px;font:400 1.4rem/1.3 var(--fd)}
+.hw{background:var(--fern);color:var(--on-fern);border-radius:24px;padding:24px;display:grid;gap:12px;max-width:44rem}
+.hw h3{font:400 1.6rem/1.2 var(--fd)}.hw .tt{color:var(--lime)}.hw p{font-size:1.05rem}
+.hw ol{display:grid;gap:8px}.hw li{padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.12);font-size:1.02rem}
+.hw .btn{background:var(--lime);border-color:var(--lime);color:var(--khaki)}.hw .btn:hover:not(:disabled){background:var(--celadon);border-color:var(--celadon)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hw .note{color:var(--celadon)}
+footer{background:var(--khaki);color:var(--celadon);padding:22px 0 30px;font-size:.92rem}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}.js .rv.in{opacity:1;transform:none}
+@media(max-width:720px){.sg{grid-template-columns:minmax(0,1fr);gap:12px}.mins{display:flex;gap:10px;align-items:baseline}.mins small{margin:0}.top .btn{padding:8px 14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}}
+.trn{background:var(--mist);border:2px solid var(--fern)}
+.tqt{font:600 1.05rem/1.5 var(--fb);margin-bottom:10px}.tqt b{color:var(--fern)}
+.tfb{border-radius:16px;padding:12px 16px;font-size:.95rem;background:#fff;border:1px solid var(--line)}
+.tfb.ok{background:var(--ok-soft);border-color:var(--fern)}.tfb.no{background:var(--bad-soft);border-color:var(--bad)}.tfb.no b{color:var(--bad)}
+.trn .chips .chip{font-size:.88rem}.trn .opt{font-size:.97rem}
+.trn .tbl{background:#fff}
+.easy{background:#F6F9DC;border:2px dashed var(--lime);border-radius:20px;padding:14px 18px;max-width:44rem;display:grid;gap:6px;font-size:1.05rem}
+.easy .tt{color:var(--fern)}.easy b{color:var(--fern)}
+.eqb{font:400 clamp(1.3rem,4vw,2rem)/1.9 var(--fd);color:var(--ink);word-break:break-word;margin:6px 0 4px}
+.eqb sub{font-size:.58em;vertical-align:baseline;position:relative;top:.28em;line-height:0}
+.eqb sup{font-size:.58em;vertical-align:baseline;position:relative;top:-.5em;line-height:0}
+.eqb .ox,.ox{font:700 .5em var(--fb);position:relative;top:-1.35em;color:var(--bad);margin:0 .08em 0 .05em;letter-spacing:0}
+.eqb .gap{display:inline-block;min-width:1.4em;border-bottom:3px solid var(--fern);color:var(--fern);text-align:center}
+sub{line-height:0}
+.tbl td.okc{background:var(--ok-soft);color:var(--fern);font-weight:700}
+.tbl td.nok{background:var(--bad-soft);color:var(--bad);font-weight:700}
+.big{font:400 clamp(1.6rem,5vw,2.4rem)/1.2 var(--fd);color:var(--fern)}
+.sc-t{font-size:1rem}
+</style></head><body>
+<div class="top"><div class="wrap">
+  <div class="mark">Хм</div>
+  <div class="bst"><small>Сейчас</small><span id="bs">Занятие не начато</span></div>
+  <div class="clock" id="clock">00:00 / 60:00</div>
+  <button class="btn" id="tg" type="button">Старт</button>
+  <button class="btn ghost" id="rs" type="button">Сначала</button>
+</div></div>
+
+<header class="wrap hero"><div class="panel"><div class="hg">
+  <div>
+    <p class="meta">Химия · ОГЭ · окислительно-восстановительные реакции</p>
+    <h1>Степени окисления</h1>
+    <p class="meta">Правила · поиск по формуле · окислитель и восстановитель · электронный баланс · 60 минут</p>
+    <ul class="facts">
+      <li>Идём медленно: одна мысль, потом проверка, потом следующая</li>
+      <li>Каждый шаг разбора можно прощёлкать кнопкой «Дальше»</li>
+      <li>Тренажёры с бесконечными заданиями в каждом разделе</li>
+      <li>В конце три вопроса по подтеме «Степени окисления»</li>
+      <li>Домашнее задание на 10 минут, четыре задания внутри урока</li>
+    </ul>
+    <ol class="agenda">
+      <li><a href="#s1"><b>0–5′</b><span>Настройка и цель</span></a></li>
+      <li><a href="#s2"><b>5–15′</b><span>Что такое степень окисления</span></a></li>
+      <li><a href="#s3"><b>15–25′</b><span>Находим степень окисления по формуле</span></a></li>
+      <li><a href="#s4"><b>25–37′</b><span>Окисление, восстановление, окислитель</span></a></li>
+      <li><a href="#s5"><b>37–49′</b><span>Электронный баланс</span></a></li>
+      <li><a href="#s6"><b>49–55′</b><span>Три вопроса по подтеме</span></a></li>
+      <li><a href="#s7"><b>55–60′</b><span>Домашнее задание</span></a></li>
+    </ol>
+  </div>
+  <div class="lab">
+    <svg viewBox="0 0 400 270" role="img" aria-label="Атом цинка отдаёт два электрона: степень окисления растёт с 0 до +2">
+      <circle cx="82" cy="150" r="58" fill="#337738"/>
+      <circle cx="318" cy="150" r="58" fill="#337738"/>
+      <text x="82" y="162" text-anchor="middle" font-size="34" fill="#E6F5E2" font-family="Yeseva One,Georgia,serif">Zn</text>
+      <text x="318" y="162" text-anchor="middle" font-size="34" fill="#E6F5E2" font-family="Yeseva One,Georgia,serif">Zn</text>
+      <text x="82" y="62" text-anchor="middle" font-size="40" fill="#B4D44D" font-family="Yeseva One,Georgia,serif">0</text>
+      <text x="318" y="62" text-anchor="middle" font-size="40" fill="#B4D44D" font-family="Yeseva One,Georgia,serif">+2</text>
+      <line x1="150" y1="150" x2="238" y2="150" stroke="#B4D44D" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="252,150 234,138 234,162" fill="#B4D44D"/>
+      <circle cx="176" cy="122" r="9" fill="#A4E3A4"/>
+      <circle cx="214" cy="122" r="9" fill="#A4E3A4"/>
+      <text x="200" y="196" text-anchor="middle" font-size="22" fill="#E6F5E2" font-family="Yeseva One,Georgia,serif">2 электрона</text>
+    </svg>
+    <p class="cap">Отдал электроны: <span>степень окисления выросла</span></p>
+  </div>
+</div></div></header>
+
+<main>
+<section class="stage" id="s1" data-start="0" data-name="Настройка и цель"><div class="wrap sg">
+  <div class="mins">0–5′<small>минут</small></div>
+  <div class="body">
+    <h2>Настройка и цель</h2>
+    <p class="lead">Тема новая и непривычная, поэтому идём медленно и без спешки. К концу занятия ученик находит степень окисления по формуле, отличает окислитель от восстановителя и составляет электронный баланс для простой реакции.</p>
+    <div class="easy"><span class="tt">Простыми словами</span><p>Электроны это «монетки» с отрицательным зарядом. Когда атом отдаёт монетки, его заряд становится более положительным, а когда забирает, более отрицательным. <b>Степень окисления</b> это условный заряд атома в веществе: считаем так, будто все электроны связи целиком достались более «жадному» атому. Отдал электроны: пишем <b>+</b>. Взял: пишем <b>−</b>. Реакции, где атомы обмениваются электронами, называются <b>окислительно-восстановительными</b> (ОВР).</p></div>
+    <div class="card">
+      <h3><small>Словарик</small>Слова, которые будут сегодня</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Слово</th><th>Что это простыми словами</th></tr>
+        <tr><td><b>Степень окисления</b></td><td>условный заряд атома в веществе, пишется со знаком: +2, −1, 0</td></tr>
+        <tr><td><b>Окисление</b></td><td>атом отдаёт электроны, его степень окисления растёт</td></tr>
+        <tr><td><b>Восстановление</b></td><td>атом принимает электроны, его степень окисления падает</td></tr>
+        <tr><td><b>Восстановитель</b></td><td>тот, кто отдаёт электроны (и сам окисляется)</td></tr>
+        <tr><td><b>Окислитель</b></td><td>тот, кто принимает электроны (и сам восстанавливается)</td></tr>
+        <tr><td><b>Электронный баланс</b></td><td>способ подобрать коэффициенты так, чтобы отданных электронов было столько же, сколько принятых</td></tr>
+      </table></div>
+    </div>
+    <div class="ask"><span class="tt">Спросить ученика</span><p>Что такое заряд иона, например Na⁺? Чем может отличаться заряд атома в соединении от заряда атома в простом веществе? Что в химии получается хуже всего?</p></div>
+    <details class="dt"><summary>Ответы для репетитора</summary><p>Заряд иона это реальный заряд частицы, которая отдала или приняла электроны. Степень окисления это условная запись по тому же принципу. В простом веществе (Na, O₂) атомы не отдают и не берут электроны, поэтому степень окисления 0. Запишите, на чём ученик спотыкается: знаки, подсчёт с индексами, путаница окислитель/восстановитель. Это подскажет, где замедляться.</p></details>
+  </div>
+</div></section>
+
+<section class="stage" id="s2" data-start="5" data-name="Что такое степень окисления"><div class="wrap sg">
+  <div class="mins">5–15′<small>минут</small></div>
+  <div class="body">
+    <h2>Что такое степень окисления: правила</h2>
+    <p class="lead">Степень окисления не нужно «угадывать». Для большинства элементов она подчиняется нескольким правилам. Выучим их по одному.</p>
+    <div class="stagegrid">
+      <div class="card"><h3><small>Правило 1</small>Простое вещество: 0</h3><p>Если вещество состоит из атомов одного элемента (Na, Fe, O₂, Cl₂, H₂, P₄), степень окисления каждого атома <b>0</b>.</p></div>
+      <div class="card"><h3><small>Правило 2</small>Сумма равна нулю</h3><p>В молекуле сумма степеней окисления всех атомов <b>равна 0</b>. В ионе она равна <b>заряду иона</b> (в SO₄²⁻ сумма равна −2).</p></div>
+      <div class="card"><h3><small>Правило 3</small>Постоянные</h3><p>Щелочные металлы (Li, Na, K) <b>+1</b>. Mg, Ca, Ba, Zn <b>+2</b>. Al <b>+3</b>. Фтор F всегда <b>−1</b>.</p></div>
+      <div class="card"><h3><small>Правило 4</small>Водород и кислород</h3><p>Водород почти всегда <b>+1</b> (исключение: гидриды металлов, NaH, где −1). Кислород почти всегда <b>−2</b> (исключение: пероксиды, H₂O₂, где −1).</p></div>
+    </div>
+    <div class="easy"><span class="tt">Простыми словами</span><p>В каждой молекуле «долги» и «прибыль» по электронам должны сойтись в ноль. Известных игроков (H, O, металлы) считаем по правилам, а неизвестного находим из равенства «сумма = 0». Простое вещество никому ничего не должно: 0.</p></div>
+    <div class="card">
+      <h3><small>Не путаем записи</small>Степень окисления и заряд иона</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Запись</th><th>Что это</th><th>Как пишется</th></tr>
+        <tr><td><b>Ca⁺²</b> (в CaO)</td><td>степень окисления</td><td>сначала знак, потом цифра</td></tr>
+        <tr><td><b>Ca²⁺</b></td><td>заряд иона</td><td>сначала цифра, потом знак</td></tr>
+      </table></div>
+    </div>
+    <div class="warn"><span class="tt">Типичная ошибка</span><br>Писать степень окисления без знака или с цифрой впереди: «2+» вместо «+2». Знак всегда стоит перед цифрой, а ноль пишется просто 0.</div>
+    <div class="ask"><span class="tt">Спросить ученика</span><p>Чему равна степень окисления у атомов в молекуле азота N₂? Почему? Чему равна сумма степеней окисления в молекуле H₂O?</p></div>
+    <details class="dt"><summary>Ответы для репетитора</summary><p>В N₂ степень окисления 0: простое вещество, атомы одинаковые и электроны делят поровну. В H₂O сумма 0: два водорода по +1 дают +2, кислород −2. Если ученик не видит этого, нарисуйте столбик из двух «плюсов» и одного «минус два».</p></details>
+    <div class="card trn" id="tr1"></div>
+  </div>
+</div></section>
+
+<section class="stage" id="s3" data-start="15" data-name="Находим степень окисления по формуле"><div class="wrap sg">
+  <div class="mins">15–25′<small>минут</small></div>
+  <div class="body">
+    <h2>Находим степень окисления по формуле</h2>
+    <p class="lead">Берём вещество, где одна степень окисления неизвестна, и составляем уравнение «сумма равна нулю». Каждый шаг прощёлкиваем кнопкой.</p>
+    <ol class="nums">
+      <li class="num"><b>1</b><span>Подписать известные степени окисления (H +1, O −2, металлы по правилам).</span></li>
+      <li class="num"><b>2</b><span>Неизвестную обозначить буквой <b>x</b>.</span></li>
+      <li class="num"><b>3</b><span>Составить уравнение: <b>индекс × степень окисления</b> для каждого элемента, сумма равна 0.</span></li>
+      <li class="num"><b>4</b><span>Решить уравнение и проверить, что сумма сошлась.</span></li>
+    </ol>
+    <div class="card trn" id="sa"></div>
+    <div class="easy"><span class="tt">Простыми словами</span><p>Это как проверка кассы: все чеки в сумме должны дать ноль. Умножаем каждую степень окисления на количество атомов (индекс), складываем и решаем, чего не хватает до нуля.</p></div>
+    <div class="card trn" id="sb"></div>
+    <div class="warn"><span class="tt">Типичная ошибка</span><br>Забыть умножить на индекс. В K₂Cr₂O₇ хрома два атома, значит в уравнении стоит <b>2x</b>, а не x. Так же с кислородом: 7 атомов, значит 7 · (−2).</div>
+    <div class="card">
+      <h3><small>Посмотри сам</small>Калькулятор степени окисления</h3>
+      <div class="chips" id="cx-ch"></div>
+      <div class="eqb" id="cx-f"></div>
+      <div class="scroll"><table class="tbl" id="cx-tb"></table></div>
+      <div class="tfb ok" id="cx-tx"></div>
+    </div>
+    <div class="ask"><span class="tt">Спросить ученика</span><p>Найди степень окисления фосфора в H₃PO₄. Запиши уравнение, из которого нашёл x.</p></div>
+    <details class="dt"><summary>Ответы для репетитора</summary><p>3 · (+1) + x + 4 · (−2) = 0, то есть 3 + x − 8 = 0, значит x = +5. Попросите ученика проговорить, откуда взялись числа 3 и 4 (это индексы у H и O), и сделать проверку подстановкой: 3 + 5 − 8 = 0.</p></details>
+    <div class="card trn" id="tr2"></div>
+  </div>
+</div></section>
+
+<section class="stage" id="s4" data-start="25" data-name="Окисление, восстановление, окислитель"><div class="wrap sg">
+  <div class="mins">25–37′<small>минут</small></div>
+  <div class="body">
+    <h2>Окисление, восстановление, окислитель</h2>
+    <p class="lead">Теперь смотрим, что происходит со степенью окисления в ходе реакции. Если она меняется, значит атомы обменялись электронами.</p>
+    <div class="scroll"><table class="tbl">
+      <tr><th>Процесс</th><th>Что делает атом</th><th>Степень окисления</th><th>Кто он</th></tr>
+      <tr><td><b>Окисление</b></td><td>отдаёт электроны</td><td>растёт (например, 0 → +2)</td><td><b>восстановитель</b></td></tr>
+      <tr><td><b>Восстановление</b></td><td>принимает электроны</td><td>падает (например, 0 → −2)</td><td><b>окислитель</b></td></tr>
+    </table></div>
+    <div class="easy"><span class="tt">Простыми словами</span><p>Запомни фразу: <b>«Отдал — окислился — стал восстановителем. Принял — восстановился — стал окислителем»</b>. Название «окислитель» значит «тот, кто окисляет других», а для этого ему самому нужно забрать электроны.</p></div>
+    <div class="card">
+      <h3><small>Посмотри сам</small>Шкала степеней окисления</h3>
+      <div class="chips" id="scl-ch"></div>
+      <div class="canvas" id="scl-svg"></div>
+      <div class="tfb ok sc-t" id="scl-tx"></div>
+    </div>
+    <div class="warn"><span class="tt">Типичная ошибка</span><br>Думать, что «окислитель окисляется». Нет: окислитель окисляет других, а сам <b>восстанавливается</b>. Вправо по шкале (степень растёт): окисление. Влево (степень падает): восстановление.</div>
+    <div class="card">
+      <h3><small>Подсказка по свойствам</small>Что можно ждать от элемента, например от серы</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Вещество</th><th>Степень S</th><th>Что может делать</th></tr>
+        <tr><td>H₂S</td><td>−2 (низшая)</td><td>только отдавать электроны: восстановитель</td></tr>
+        <tr><td>S, SO₂</td><td>0, +4 (промежуточная)</td><td>и отдавать, и принимать</td></tr>
+        <tr><td>H₂SO₄</td><td>+6 (высшая)</td><td>только принимать электроны: окислитель</td></tr>
+      </table></div>
+      <p class="note">Высшая степень окисления равна номеру группы (у S это +6, у N это +5). Низшая у неметаллов равна номеру группы минус 8 (у S это −2, у N это −3). Исключения: O и F.</p>
+    </div>
+    <div class="ask"><span class="tt">Спросить ученика</span><p>Атом хлора перешёл из 0 в −1. Он отдал или принял электроны? Как называется процесс? Кто он, окислитель или восстановитель?</p></div>
+    <details class="dt"><summary>Ответы для репетитора</summary><p>Степень окисления упала с 0 до −1, значит атом принял один электрон. Процесс называется восстановлением, а сам хлор в этой реакции окислитель. Если ученик перепутал, попросите перечитать фразу про «отдал — окислился» и нарисовать стрелку по шкале.</p></details>
+    <div class="card trn" id="tr3"></div>
+  </div>
+</div></section>
+
+<section class="stage" id="s5" data-start="37" data-name="Электронный баланс"><div class="wrap sg">
+  <div class="mins">37–49′<small>минут</small></div>
+  <div class="body">
+    <h2>Электронный баланс</h2>
+    <p class="lead">Электронный баланс помогает подобрать коэффициенты в ОВР. Главная мысль: сколько электронов восстановитель отдал, столько же окислитель должен принять.</p>
+    <ol class="nums">
+      <li class="num"><b>1</b><span>Расставить степени окисления у всех элементов в схеме.</span></li>
+      <li class="num"><b>2</b><span>Найти элементы, у которых степень окисления <b>изменилась</b>.</span></li>
+      <li class="num"><b>3</b><span>Записать «полуреакции» с электронами: отдал (−e⁻) и принял (+e⁻).</span></li>
+      <li class="num"><b>4</b><span>Найти НОК числа отданных и принятых электронов и получить <b>множители</b>.</span></li>
+      <li class="num"><b>5</b><span>Перенести множители в уравнение, уравнять остальное и проверить все элементы.</span></li>
+    </ol>
+    <div class="card trn" id="ba"></div>
+    <div class="easy"><span class="tt">Простыми словами</span><p>Это обмен монетками-электронами. Один отдаёт 3 монетки, другой берёт 4. Чтобы никто не остался в долгу, берём общее число 12: тогда первый отдаст по 3 четыре раза, а второй возьмёт по 4 три раза. Числа «4» и «3» и есть множители.</p></div>
+    <div class="card trn" id="bb"></div>
+    <div class="warn"><span class="tt">Типичные ошибки</span><br>1) Считают электроны на один атом там, где в формуле их два (в O₂ принято 4 электрона на молекулу, по 2 на атом). 2) Ставят множитель только в одну часть уравнения, а потом не проверяют остальные элементы. 3) Путают, кто окислитель: тот, кто принимает электроны.</div>
+    <div class="ask"><span class="tt">Решаем вместе</span><p>Для схемы Mg + O₂ → MgO определи степени окисления, найди окислитель и восстановитель, составь электронный баланс и расставь коэффициенты.</p></div>
+    <details class="dt"><summary>Ответы для репетитора</summary><p>Mg⁰ − 2e⁻ → Mg⁺² | 2 (восстановитель). O₂⁰ + 4e⁻ → 2O⁻² | 1 (окислитель). НОК(2, 4) = 4, множители 2 и 1. Получаем 2Mg + O₂ → 2MgO. Проверка: Mg 2 и 2, O 2 и 2.</p></details>
+    <div class="card trn" id="tr4"></div>
+  </div>
+</div></section>
+
+<section class="stage" id="s6" data-start="49" data-name="Три вопроса по подтеме"><div class="wrap sg">
+  <div class="mins">49–55′<small>минут</small></div>
+  <div class="body">
+    <h2>Три вопроса по подтеме</h2>
+    <p class="lead">Подтема: «Степени окисления». Ученик отвечает сам, ошибка подсвечивается красным, разбор спрятан под вопросом. На вопрос не больше двух минут.</p>
+    <div class="rows" id="qs"></div>
+    <p class="sc" id="sc">Отвечено: 0 из 3</p>
+    <div class="res" id="rs3" hidden></div>
+  </div>
+</div></section>
+
+<section class="stage" id="s7" data-start="55" data-name="Домашнее задание"><div class="wrap sg">
+  <div class="mins">55–60′<small>минут</small></div>
+  <div class="body">
+    <h2>Домашнее задание</h2>
+    <div class="hw">
+      <span class="tt">Домашнее задание · около 10 минут</span>
+      <h3>Конспект и четыре задания</h3>
+      <div id="hwt">
+        <p id="hws">Прочитать конспект по подтеме «Степени окисления» и решить 4 задания на степени окисления и электронный баланс; к каждой ошибке записать правило (около 10 мин).</p>
+        <ol id="hwl" style="margin-top:12px">
+          <li><b>Задание 1.</b> Определи степень окисления серы в веществах: H₂S, SO₂, H₂SO₃, Na₂SO₄. Для каждого запиши уравнение, из которого нашёл x.</li>
+          <li><b>Задание 2.</b> Определи степень окисления хрома и марганца в веществах: K₂Cr₂O₇, Cr₂O₃, KMnO₄, MnO₂.</li>
+          <li><b>Задание 3.</b> Для схемы Fe + Cl₂ → FeCl₃ расставь степени окисления, составь электронный баланс, расставь коэффициенты и укажи окислитель и восстановитель.</li>
+          <li><b>Задание 4.</b> Для схемы Fe₂O₃ + CO → Fe + CO₂ расставь степени окисления, составь электронный баланс, расставь коэффициенты и укажи окислитель и восстановитель.</li>
+        </ol>
+      </div>
+      <div class="btns"><button class="btn" id="cp" type="button">Скопировать задание</button><span class="note" id="cm"></span></div>
+    </div>
+    <details class="dt"><summary>Ответы к домашнему заданию для репетитора</summary>
+      <p><b>1.</b> H₂S: 2 · (+1) + x = 0, x = −2. SO₂: x + 2 · (−2) = 0, x = +4. H₂SO₃: 2 + x − 6 = 0, x = +4. Na₂SO₄: 2 + x − 8 = 0, x = +6.</p>
+      <p><b>2.</b> K₂Cr₂O₇: 2 + 2x − 14 = 0, x = +6. Cr₂O₃: 2x − 6 = 0, x = +3. KMnO₄: 1 + x − 8 = 0, x = +7. MnO₂: x − 4 = 0, x = +4.</p>
+      <p><b>3.</b> Fe⁰ − 3e⁻ → Fe⁺³ | 2; Cl₂⁰ + 2e⁻ → 2Cl⁻ | 3. НОК(3, 2) = 6. Уравнение: 2Fe + 3Cl₂ → 2FeCl₃ (Fe 2 и 2, Cl 6 и 6). Восстановитель Fe, окислитель Cl₂.</p>
+      <p><b>4.</b> Fe⁺³ + 3e⁻ → Fe⁰ | 2; C⁺² − 2e⁻ → C⁺⁴ | 3. НОК(3, 2) = 6. Уравнение: Fe₂O₃ + 3CO → 2Fe + 3CO₂ (Fe 2 и 2, C 3 и 3, O 6 и 6). Окислитель Fe₂O₃ (за счёт Fe⁺³), восстановитель CO (за счёт C⁺²).</p>
+    </details>
+    <div class="key"><span class="tt">В конце занятия</span><br>Ученик своими словами объясняет, как найти степень окисления (сумма равна 0), кто такой окислитель и восстановитель, и называет шаги электронного баланса: степени окисления, что изменилось, электроны, НОК и множители, проверка.</div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Химия с Марией Семилетовой. Занятие по теме «Степени окисления».</div></footer>
+
+<script>(function(){
+document.documentElement.classList.add('js');
+var $=function(i){return document.getElementById(i)};
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rnd(n){return Math.floor(Math.random()*n)}
+function pick(a){return a[rnd(a.length)]}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rnd(i+1),t=a[i];a[i]=a[j];a[j]=t}return a}
+function mcq(right,wrong){var all=shuf([right].concat(wrong));return {opts:all,correct:all.indexOf(right)}}
+function pl(n,a,b,c){var m=n%100,k=n%10;return (m>10&&m<20)?c:k===1?a:(k>1&&k<5)?b:c}
+function gcd(a,b){return b?gcd(b,a%b):a}
+
+/* ===== формулы ===== */
+function sub(f){return f.replace(/(\d+)/g,'<sub>$1</sub>')}
+function term(c,f){return (c===1?'':c)+sub(f)}
+function fmt(n){return n>0?'+'+n:n<0?'−'+(-n):'0'}
+function num(n){return n<0?'−'+(-n):String(n)}
+function ox(v){return '<span class="ox">'+fmt(v)+'</span>'}
+var E='e<sup>−</sup>';
+function parse(f){var st=[{}],i=0,m,d,c,t;
+  while(i<f.length){var ch=f.charAt(i);
+    if(ch==='('){st.push({});i++}
+    else if(ch===')'){i++;var n='';while(i<f.length&&/\d/.test(f.charAt(i)))n+=f.charAt(i++);n=n?+n:1;var top=st.pop(),par=st[st.length-1];for(var k in top)par[k]=(par[k]||0)+top[k]*n}
+    else{m=/^[A-Z][a-z]?/.exec(f.slice(i))[0];i+=m.length;d='';while(i<f.length&&/\d/.test(f.charAt(i)))d+=f.charAt(i++);c=d?+d:1;t=st[st.length-1];t[m]=(t[m]||0)+c}}
+  return st[0]}
+function solve(f,u,k){var p=parse(f),sum=0,terms=[],rows=[];
+  for(var e in p){var cnt=p[e];
+    if(e===u){terms.push(cnt===1?'x':cnt+'x');rows.push([e,cnt,'x',cnt===1?'x':cnt+'x'])}
+    else{var v=k[e];sum+=cnt*v;terms.push(cnt===1?'('+fmt(v)+')':cnt+' · ('+fmt(v)+')');rows.push([e,cnt,fmt(v),num(cnt*v)])}}
+  var n=p[u],x=0-sum/n;
+  return {p:p,n:n,x:x,sum:sum,terms:terms,rows:rows,eq:terms.join(' + ')+' = 0'}}
+function solveText(s,u,f){var a=s.n===1?'x':s.n+'x';
+  return 'В '+sub(f)+': '+s.eq+'. Известная часть даёт '+num(s.sum)+', поэтому '+a+' = '+num(0-s.sum)+(s.n===1?'':', x = '+num(s.x))+'. Ответ: у '+u+' степень окисления '+fmt(s.x)+'.'}
+function numOpts(ans,lo,hi){var s=[ans],pool=[];for(var i=lo;i<=hi;i++)if(i!==ans)pool.push(i);pool=shuf(pool);while(s.length<4&&pool.length)s.push(pool.pop());s.sort(function(a,b){return a-b});return s}
+
+/* ===== пошаговые разборы ===== */
+function stepper(id,cfg){var root=$(id),i=0,last=cfg.steps.length-1;
+  root.innerHTML='<h3><small>Разбор по шагам</small>'+cfg.title+'</h3><div class="eqb" data-r="eq"></div><div class="scroll" data-r="tw"><table class="tbl" data-r="tb"></table></div><div class="tfb" data-r="tx"></div><div class="btns"><button class="btn ghost" type="button" data-r="bk">Назад</button><button class="btn" type="button" data-r="nx">Дальше</button><span class="note" data-r="sc"></span></div>';
+  function R(n){return root.querySelector('[data-r="'+n+'"]')}
+  function draw(){var s=cfg.steps[i];
+    R('eq').innerHTML=s.eq;R('tb').innerHTML=s.tb||'';R('tw').hidden=!s.tb;
+    R('tx').innerHTML=s.t;R('tx').className='tfb'+(i===last?' ok':'');
+    R('bk').disabled=i===0;R('nx').disabled=i===last;R('sc').textContent='Шаг '+(i+1)+' из '+(last+1)}
+  R('nx').addEventListener('click',function(){if(i<last){i++;draw()}});
+  R('bk').addEventListener('click',function(){if(i>0){i--;draw()}});draw()}
+
+stepper('sa',{title:'Степень окисления серы в H₂SO₄',steps:[
+ {eq:'H<sub>2</sub>SO<sub>4</sub>',t:'<b>Шаг 1.</b> Берём серную кислоту. Серы один атом, и её степень окисления неизвестна. Водород здесь +1, кислород −2: это правило 4.'},
+ {eq:'H'+ox(1)+'<sub>2</sub>S'+'<span class="ox">x</span>'+'O'+ox(-2)+'<sub>4</sub>',t:'<b>Шаг 2.</b> Подписываем степени окисления над символами. Неизвестную сразу обозначаем буквой <b>x</b>.'},
+ {eq:'2 · (+1) + x + 4 · (−2) = 0',t:'<b>Шаг 3.</b> Сумма степеней окисления всех атомов равна 0. Каждую степень умножаем на число атомов (индекс): у H их 2, у O их 4.'},
+ {eq:'2 + x − 8 = 0, x = +6',t:'<b>Шаг 4.</b> Считаем: x = 8 − 2 = 6. Степень окисления серы <b>+6</b>.'},
+ {eq:'H'+ox(1)+'<sub>2</sub>S'+ox(6)+'O'+ox(-2)+'<sub>4</sub>',t:'<b>Проверка.</b> 2 · (+1) + 6 + 4 · (−2) = 2 + 6 − 8 = 0. Сумма сошлась, ответ верный. Это высшая степень окисления серы (номер группы 6).'}]});
+stepper('sb',{title:'Степень окисления хрома в K₂Cr₂O₇',steps:[
+ {eq:'K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>',t:'<b>Шаг 1.</b> Атомов хрома два, степень окисления неизвестна. Калий щелочной металл: +1. Кислород: −2.'},
+ {eq:'K'+ox(1)+'<sub>2</sub>Cr<span class="ox">x</span><sub>2</sub>O'+ox(-2)+'<sub>7</sub>',t:'<b>Шаг 2.</b> Подписываем известные степени и обозначаем неизвестную буквой <b>x</b>.'},
+ {eq:'2 · (+1) + 2x + 7 · (−2) = 0',t:'<b>Шаг 3.</b> Составляем уравнение. Обрати внимание: хрома два атома, поэтому в уравнении <b>2x</b>, а не x.'},
+ {eq:'2 + 2x − 14 = 0, 2x = 12, x = +6',t:'<b>Шаг 4.</b> Переносим: 2x = 14 − 2 = 12. Делим на 2: x = 6. Степень окисления хрома <b>+6</b>.'},
+ {eq:'K'+ox(1)+'<sub>2</sub>Cr'+ox(6)+'<sub>2</sub>O'+ox(-2)+'<sub>7</sub>',t:'<b>Проверка.</b> 2 · (+1) + 2 · (+6) + 7 · (−2) = 2 + 12 − 14 = 0. Верно.'}]});
+
+stepper('ba',{title:'Zn + HCl → ZnCl₂ + H₂',steps:[
+ {eq:'Zn + HCl → ZnCl<sub>2</sub> + H<sub>2</sub>',t:'<b>Шаг 1.</b> Схема реакции. В ней есть простые вещества (Zn и H₂): значит, степени окисления, скорее всего, меняются, и это ОВР.'},
+ {eq:'Zn'+ox(0)+' + H'+ox(1)+'Cl'+ox(-1)+' → Zn'+ox(2)+'Cl'+ox(-1)+'<sub>2</sub> + H'+ox(0)+'<sub>2</sub>',t:'<b>Шаг 2.</b> Расставляем степени окисления. Zn и H₂ простые вещества: 0. В HCl: H +1, Cl −1. В ZnCl₂: Cl −1, значит Zn +2 (проверка: +2 + 2 · (−1) = 0).'},
+ {eq:'Zn'+ox(0)+' → Zn'+ox(2)+'&nbsp;&nbsp; H'+ox(1)+' → H'+ox(0),tb:'<tr><th>Элемент</th><th>Слева</th><th>Справа</th><th></th></tr><tr><td><b>Zn</b></td><td>0</td><td>+2</td><td class="nok">меняется</td></tr><tr><td><b>H</b></td><td>+1</td><td>0</td><td class="nok">меняется</td></tr><tr><td><b>Cl</b></td><td>−1</td><td>−1</td><td class="okc">не меняется</td></tr>',t:'<b>Шаг 3.</b> Сравниваем левую и правую часть. Меняются Zn (0 → +2) и H (+1 → 0). Хлор не меняется, в баланс его не берём.'},
+ {eq:'Zn'+ox(0)+' − 2'+E+' → Zn'+ox(2)+' &nbsp;| 1<br>2H'+ox(1)+' + 2'+E+' → H'+ox(0)+'<sub>2</sub> &nbsp;| 1',t:'<b>Шаг 4.</b> Электронный баланс. Цинк отдаёт 2 электрона: он <b>восстановитель</b>. Два атома H⁺¹ (в молекуле H₂ их два) принимают по одному электрону, всего 2: водород <b>окислитель</b>. Электронов поровну, множители 1 и 1.'},
+ {eq:'Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub>',t:'<b>Шаг 5.</b> Множители 1 и 1 переносим в уравнение. Хлора в ZnCl₂ два, значит перед HCl ставим 2.'},
+ {eq:'Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub>',tb:'<tr><th>Элемент</th><th>Слева</th><th>Справа</th><th></th></tr><tr><td><b>Zn</b></td><td>1</td><td>1</td><td class="okc">равно ✓</td></tr><tr><td><b>H</b></td><td>2</td><td>2</td><td class="okc">равно ✓</td></tr><tr><td><b>Cl</b></td><td>2</td><td>2</td><td class="okc">равно ✓</td></tr>',t:'<b>Проверка.</b> Все элементы равны. Восстановитель: Zn. Окислитель: HCl (за счёт водорода H⁺¹).'}]});
+stepper('bb',{title:'Al + O₂ → Al₂O₃',steps:[
+ {eq:'Al + O<sub>2</sub> → Al<sub>2</sub>O<sub>3</sub>',t:'<b>Шаг 1.</b> Схема реакции. Алюминий и кислород простые вещества, значит степени окисления будут меняться.'},
+ {eq:'Al'+ox(0)+' + O'+ox(0)+'<sub>2</sub> → Al'+ox(3)+'<sub>2</sub>O'+ox(-2)+'<sub>3</sub>',t:'<b>Шаг 2.</b> Простые вещества: 0. В Al₂O₃ кислород −2, значит 2x + 3 · (−2) = 0, x = +3.'},
+ {eq:'Al'+ox(0)+' → Al'+ox(3)+'&nbsp;&nbsp; O'+ox(0)+' → O'+ox(-2),tb:'<tr><th>Элемент</th><th>Слева</th><th>Справа</th><th></th></tr><tr><td><b>Al</b></td><td>0</td><td>+3</td><td class="nok">меняется</td></tr><tr><td><b>O</b></td><td>0</td><td>−2</td><td class="nok">меняется</td></tr>',t:'<b>Шаг 3.</b> Меняются оба элемента: Al (0 → +3) и O (0 → −2).'},
+ {eq:'Al'+ox(0)+' − 3'+E+' → Al'+ox(3)+' &nbsp;| 4<br>O'+ox(0)+'<sub>2</sub> + 4'+E+' → 2O'+ox(-2)+' &nbsp;| 3',t:'<b>Шаг 4.</b> Алюминий отдаёт 3 электрона (восстановитель). Молекула O₂ принимает 4 электрона: по 2 на каждый из двух атомов (окислитель). НОК(3, 4) = 12. Множители: 12 : 3 = <b>4</b> для Al и 12 : 4 = <b>3</b> для O₂.'},
+ {eq:'4Al + 3O<sub>2</sub> → 2Al<sub>2</sub>O<sub>3</sub>',t:'<b>Шаг 5.</b> Множитель 4 даёт 4 атома Al, значит в Al₂O₃ их тоже 4: перед Al₂O₃ ставим 2. Множитель 3 даёт 3 молекулы O₂, то есть 6 атомов кислорода: 2 · 3 = 6.'},
+ {eq:'4Al + 3O<sub>2</sub> → 2Al<sub>2</sub>O<sub>3</sub>',tb:'<tr><th>Элемент</th><th>Слева</th><th>Справа</th><th></th></tr><tr><td><b>Al</b></td><td>4</td><td>4</td><td class="okc">равно ✓</td></tr><tr><td><b>O</b></td><td>6</td><td>6</td><td class="okc">равно ✓</td></tr>',t:'<b>Проверка.</b> Все элементы равны. Восстановитель: Al. Окислитель: O₂.'}]});
+
+/* ===== калькулятор ===== */
+var CALC=[['H2SO4','S',{H:1,O:-2}],['HNO3','N',{H:1,O:-2}],['KMnO4','Mn',{K:1,O:-2}],['K2Cr2O7','Cr',{K:1,O:-2}],['Al2(SO4)3','S',{Al:3,O:-2}],['Ca(ClO)2','Cl',{Ca:2,O:-2}],['H3PO4','P',{H:1,O:-2}]],ci=0;
+function drawCalc(){var c=CALC[ci],s=solve(c[0],c[1],c[2]),h='<tr><th>Элемент</th><th>Атомов</th><th>Степень окисления</th><th>Вклад</th></tr>';
+  s.rows.forEach(function(r){var u=r[0]===c[1];h+='<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td'+(u?' class="nok"':'')+'>'+r[2]+'</td><td>'+r[3]+'</td></tr>'});
+  $('cx-f').innerHTML=sub(c[0]);$('cx-tb').innerHTML=h;
+  $('cx-tx').innerHTML='Уравнение «сумма равна 0»: <b>'+s.eq+'</b>.<br>'+(s.n===1?'x':s.n+'x')+' = '+num(0-s.sum)+(s.n===1?'':', x = '+num(s.x))+'. Ответ: <b>'+c[1]+' '+fmt(s.x)+'</b>.';
+  [].forEach.call($('cx-ch').children,function(b,i){b.setAttribute('aria-pressed',i===ci?'true':'false')})}
+$('cx-ch').innerHTML=CALC.map(function(c,i){return '<button class="chip" type="button" data-i="'+i+'" aria-pressed="false">'+sub(c[0])+'</button>'}).join('');
+$('cx-ch').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;ci=+b.dataset.i;drawCalc()});drawCalc();
+
+/* ===== шкала ===== */
+var SC=[['Zn',0,2],['Cl',0,-1],['Fe',3,2],['S',-2,0],['Mn',7,2],['N',5,2]],si=0;
+function xs(v){return 40+(v+4)*60}
+function drawScale(){var t=SC[si],a=t[1],b=t[2],up=b>a,d=up?1:-1,col=up?'var(--pc)':'var(--ec)',x1=xs(a),x2=xs(b),g='';
+  g+='<line x1="30" y1="90" x2="710" y2="90" style="stroke:var(--ink);stroke-width:3;opacity:.35"/>';
+  for(var v=-4;v<=7;v++){var on=(v===a||v===b);
+    g+='<line x1="'+xs(v)+'" y1="85" x2="'+xs(v)+'" y2="95" style="stroke:var(--ink);stroke-width:2;opacity:.5"/><text x="'+xs(v)+'" y="122" text-anchor="middle" style="font:'+(on?700:500)+' 15px Onest,sans-serif;fill:'+(on?'var(--ink)':'var(--soft)')+'">'+fmt(v)+'</text>'}
+  g+='<line x1="'+x1+'" y1="62" x2="'+(x2-d*12)+'" y2="62" style="stroke:'+col+';stroke-width:5;stroke-linecap:round"/><polygon points="'+x2+',62 '+(x2-d*14)+',52 '+(x2-d*14)+',72" style="fill:'+col+'"/>';
+  g+='<circle cx="'+x1+'" cy="90" r="9" style="fill:#fff;stroke:'+col+';stroke-width:4"/><circle cx="'+x2+'" cy="90" r="9" style="fill:'+col+'"/>';
+  g+='<text x="'+((x1+x2)/2)+'" y="36" text-anchor="middle" style="font:700 16px Onest,sans-serif;fill:'+col+'">'+(up?'окисление: отдаёт электроны':'восстановление: принимает электроны')+'</text>';
+  $('scl-svg').innerHTML='<svg viewBox="0 0 720 140" role="img" aria-label="Шкала степеней окисления">'+g+'</svg>';
+  var dd=Math.abs(b-a);
+  $('scl-tx').innerHTML='<b>'+t[0]+':</b> '+fmt(a)+' → '+fmt(b)+'. Степень окисления '+(up?'выросла':'упала')+' на '+dd+', значит атом '+(up?'отдаёт ':'принимает ')+dd+' '+pl(dd,'электрон','электрона','электронов')+(up?': идёт окисление, атом восстановитель.':': идёт восстановление, атом окислитель.');
+  [].forEach.call($('scl-ch').children,function(x,i){x.setAttribute('aria-pressed',i===si?'true':'false')})}
+$('scl-ch').innerHTML=SC.map(function(t,i){return '<button class="chip" type="button" data-i="'+i+'" aria-pressed="false">'+t[0]+': '+fmt(t[1])+' → '+fmt(t[2])+'</button>'}).join('');
+$('scl-ch').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;si=+b.dataset.i;drawScale()});drawScale();
+
+/* ===== тренажёры ===== */
+function trainer(id,cfg){
+  var root=$(id),S={mode:cfg.modes[0][0],ok:0,tot:0,st:0,t:null,done:false};
+  var h='<h3><small>Тренажёр · '+cfg.tag+'</small>'+cfg.title+'</h3>';
+  if(cfg.modes.length>1)h+='<div class="chips" data-r="modes">'+cfg.modes.map(function(m,i){return '<button class="chip" type="button" aria-pressed="'+(i===0)+'" data-v="'+m[0]+'">'+m[1]+'</button>'}).join('')+'</div>';
+  h+='<div data-r="q"></div><div class="tfb" data-r="fb" role="status" aria-live="polite" hidden></div><div class="btns"><button class="btn ghost" type="button" data-r="nx" disabled>Следующее задание</button><span class="note" data-r="sc">Верно: 0 из 0</span></div>';
+  root.innerHTML=h;
+  function R(n){return root.querySelector('[data-r="'+n+'"]')}
+  function score(){R('sc').textContent='Верно: '+S.ok+' из '+S.tot+(S.st>1?' · серия '+S.st:'')}
+  function render(){
+    var t=S.t=cfg.gen(S.mode);S.done=false;
+    R('q').innerHTML='<div class="tqt">'+t.q+'</div><div class="opts">'+t.opts.map(function(o){return '<button class="opt" type="button" aria-pressed="false">'+o+'</button>'}).join('')+'</div>';
+    var fb=R('fb');fb.hidden=true;fb.className='tfb';fb.innerHTML='';R('nx').disabled=true}
+  R('q').addEventListener('click',function(ev){var o=ev.target.closest('.opt');if(!o||S.done)return;
+    var all=[].slice.call(R('q').querySelectorAll('.opt')),i=all.indexOf(o),ok=i===S.t.correct;
+    all.forEach(function(x,k){x.disabled=true;x.setAttribute('aria-pressed',k===i?'true':'false');x.classList.toggle('ok',k===S.t.correct);x.classList.toggle('no',k===i&&!ok)});
+    S.done=true;S.tot++;if(ok){S.ok++;S.st++}else S.st=0;
+    var fb=R('fb');fb.hidden=false;fb.className='tfb '+(ok?'ok':'no');fb.innerHTML='<b>'+(ok?'Верно. ':'Пока нет. ')+'</b>'+S.t.ex;
+    R('nx').disabled=false;score()});
+  R('nx').addEventListener('click',render);
+  var c=R('modes');if(c)c.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.mode=b.dataset.v;[].forEach.call(c.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});render()});
+  render()}
+
+/* банк формул */
+var BK=[['H2SO4','S',{H:1,O:-2}],['HNO3','N',{H:1,O:-2}],['KMnO4','Mn',{K:1,O:-2}],['K2Cr2O7','Cr',{K:1,O:-2}],['Al2(SO4)3','S',{Al:3,O:-2}],['H3PO4','P',{H:1,O:-2}],['NH3','N',{H:1}],['H2S','S',{H:1}],['SO2','S',{O:-2}],['SO3','S',{O:-2}],['CO2','C',{O:-2}],['CH4','C',{H:1}],['Fe2O3','Fe',{O:-2}],['MnO2','Mn',{O:-2}],['Na2SO3','S',{Na:1,O:-2}],['KClO3','Cl',{K:1,O:-2}],['HClO4','Cl',{H:1,O:-2}],['Cr2O3','Cr',{O:-2}],['Ca(NO3)2','N',{Ca:2,O:-2}],['NO2','N',{O:-2}],['H2SO3','S',{H:1,O:-2}],['Na2SO4','S',{Na:1,O:-2}],['FeCl3','Fe',{Cl:-1}],['Cu(NO3)2','N',{Cu:2,O:-2}]];
+var HARD=[['K2Cr2O7','Cr',{K:1,O:-2}],['KMnO4','Mn',{K:1,O:-2}],['Al2(SO4)3','S',{Al:3,O:-2}],['Ca(ClO)2','Cl',{Ca:2,O:-2}],['Cu(NO3)2','N',{Cu:2,O:-2}],['Ca(NO3)2','N',{Ca:2,O:-2}],['KClO3','Cl',{K:1,O:-2}],['Fe2(SO4)3','S',{Fe:3,O:-2}],['Cr2(SO4)3','S',{Cr:3,O:-2}]];
+var EX=[['H2O2','O',{H:1},' Это пероксид: у кислорода здесь −1, а не −2.'],['NaH','H',{Na:1},' Это гидрид металла: у водорода здесь −1, а не +1.'],['CaH2','H',{Ca:2},' Это гидрид металла: у водорода здесь −1, а не +1.'],['Cl2','Cl',{},''],['O2','O',{},''],['N2','N',{},''],['P4','P',{},''],['Fe','Fe',{},''],['H2','H',{},'']];
+function genOx(it){var f=it[0],u=it[1],s=solve(f,u,it[2]),ans=s.x,cand=[];
+  for(var v=-4;v<=7;v++)if(v!==ans)cand.push(v);
+  var pref=[0-ans,ans+1,ans-1].filter(function(v,i,a){return v!==ans&&v>=-4&&v<=7&&a.indexOf(v)===i});
+  pref=shuf(pref).slice(0,2);
+  var rest=shuf(cand.filter(function(v){return pref.indexOf(v)<0})),wr=pref.concat(rest).slice(0,3);
+  var ns=[ans].concat(wr).sort(function(a,b){return a-b});
+  var ex=Object.keys(s.p).length===1?'Простое вещество: степень окисления 0.':solveText(s,u,f)+(it[3]||'');
+  return {q:'Чему равна степень окисления <b>'+u+'</b> в веществе <b>'+sub(f)+'</b>?',opts:ns.map(fmt),correct:ns.indexOf(ans),ex:ex}}
+
+/* 1. правила и поиск */
+var RQ=[
+['Чему равна степень окисления атомов в простом веществе, например в O₂?','0',['−2','+2','Равна номеру группы'],'В простом веществе атомы одинаковые и электроны делят поровну, поэтому степень окисления 0.'],
+['Чему равна сумма степеней окисления всех атомов в молекуле?','0',['+1','Числу атомов','Заряду ядра'],'В электронейтральной молекуле все «плюсы» и «минусы» гасят друг друга: сумма 0.'],
+['Какую степень окисления в соединениях имеют щелочные металлы (Li, Na, K)?','+1',['+2','−1','Разную в разных веществах'],'У атомов щелочных металлов один внешний электрон, они легко его отдают: всегда +1.'],
+['Какая степень окисления у кислорода в большинстве соединений?','−2',['+2','−1','0'],'Кислород почти всегда −2. Исключение: пероксиды (H₂O₂), там −1.'],
+['Какая степень окисления у водорода в большинстве соединений?','+1',['−1','0','+2'],'Водород почти всегда +1. Исключение: гидриды металлов (NaH), там −1.'],
+['Как правильно записать степень окисления кальция в CaO?','+2',['2+','2−','−2'],'Знак пишут перед цифрой: +2. Запись 2+ относится к заряду иона Ca²⁺.'],
+['Чему равна сумма степеней окисления атомов в ионе SO₄²⁻?','−2, заряду иона',['0','+2','−8'],'В ионе сумма степеней окисления равна заряду иона, то есть −2.'],
+['Какая высшая степень окисления у серы (VI группа)?','+6',['+4','+2','+8'],'Высшая степень окисления равна номеру группы: сера в VI группе, значит +6.'],
+['Какая степень окисления у фтора в соединениях?','−1',['+1','0','−2'],'Фтор самый «жадный» до электронов, он всегда −1.']];
+function gen1(mode){
+  if(mode==='r'){var q=pick(RQ),m=mcq(q[1],q[2]);return {q:q[0],opts:m.opts,correct:m.correct,ex:q[3]}}
+  return genOx(pick(BK))}
+trainer('tr1',{tag:'правила',title:'Найди степень окисления',modes:[['a','Найди степень'],['r','Правила']],gen:gen1});
+
+/* 2. сложные формулы и исключения */
+function gen2(mode){return genOx(pick(mode==='x'?EX:HARD))}
+trainer('tr2',{tag:'поиск по формуле',title:'Сложнее: исключения и большие формулы',modes:[['h','Сложные формулы'],['x','Исключения и простые']],gen:gen2});
+
+/* 3. окисление или восстановление */
+var TP=[['Zn',0,2],['Cl',0,-1],['Fe',3,2],['Mn',7,2],['S',-2,0],['N',5,2],['Cu',2,0],['H',0,1],['O',0,-2],['C',2,4],['Fe',2,3],['Al',0,3],['Cr',6,3],['H',1,0],['Mg',0,2],['S',4,6]];
+function gen3(mode){var t=pick(TP),a=t[1],b=t[2],d=Math.abs(b-a),up=b>a;
+  if(mode==='e'){var opts=numOpts(d,1,Math.max(6,d+1));
+    return {q:'Сколько электронов отдаёт или принимает один атом <b>'+t[0]+'</b>, если его степень окисления меняется с <b>'+fmt(a)+'</b> на <b>'+fmt(b)+'</b>?',opts:opts.map(String),correct:opts.indexOf(d),ex:'Степень окисления изменилась на |'+fmt(b)+' − ('+fmt(a)+')| = '+d+'. Значит, атом '+(up?'отдал ':'принял ')+d+' '+pl(d,'электрон','электрона','электронов')+'.'}}
+  var o=['Окисляется: отдаёт электроны, это восстановитель','Восстанавливается: принимает электроны, это окислитель'];
+  return {q:'У атома <b>'+t[0]+'</b> степень окисления меняется с <b>'+fmt(a)+'</b> на <b>'+fmt(b)+'</b>. Что с ним происходит?',opts:o,correct:up?0:1,ex:'Степень окисления '+(up?'выросла':'упала')+' (с '+fmt(a)+' до '+fmt(b)+'), значит атом '+(up?'отдаёт ':'принимает ')+d+' '+pl(d,'электрон','электрона','электронов')+(up?': идёт окисление, атом восстановитель.':': идёт восстановление, атом окислитель.')}}
+trainer('tr3',{tag:'окисление и восстановление',title:'Что происходит с атомом',modes:[['p','Процесс'],['e','Сколько электронов']],gen:gen3});
+
+/* 4. окислитель, восстановитель, множители */
+var RX=[
+{R:['Mg','O2'],P:['MgO'],c:[2,1,2],ox:'O2',rd:'Mg',ex:'Mg: 0 → +2, отдаёт электроны (восстановитель). O: 0 → −2, принимает электроны (окислитель O₂).'},
+{R:['Zn','HCl'],P:['ZnCl2','H2'],c:[1,2,1,1],ox:'HCl',rd:'Zn',ex:'Zn: 0 → +2 (восстановитель). H: +1 → 0 принимает электроны, поэтому окислитель HCl (за счёт водорода). Хлор не меняется.'},
+{R:['Na','Cl2'],P:['NaCl'],c:[2,1,2],ox:'Cl2',rd:'Na',ex:'Na: 0 → +1 (восстановитель). Cl: 0 → −1 (окислитель Cl₂).'},
+{R:['Fe','CuSO4'],P:['FeSO4','Cu'],c:[1,1,1,1],ox:'CuSO4',rd:'Fe',ex:'Fe: 0 → +2 (восстановитель). Cu: +2 → 0 (окислитель CuSO₄ за счёт меди). Сера и кислород не меняются.'},
+{R:['H2S','O2'],P:['SO2','H2O'],c:[2,3,2,2],ox:'O2',rd:'H2S',ex:'S: −2 → +4, отдаёт электроны (восстановитель H₂S). O: 0 → −2, принимает электроны (окислитель O₂).'},
+{R:['CuO','H2'],P:['Cu','H2O'],c:[1,1,1,1],ox:'CuO',rd:'H2',ex:'H: 0 → +1 (восстановитель H₂). Cu: +2 → 0 (окислитель CuO).'},
+{R:['Al','Cl2'],P:['AlCl3'],c:[2,3,2],ox:'Cl2',rd:'Al',ex:'Al: 0 → +3 (восстановитель). Cl: 0 → −1 (окислитель Cl₂).'},
+{R:['Fe2O3','CO'],P:['Fe','CO2'],c:[1,3,2,3],ox:'Fe2O3',rd:'CO',ex:'C: +2 → +4 (восстановитель CO). Fe: +3 → 0 (окислитель Fe₂O₃).'},
+{R:['C','O2'],P:['CO2'],c:[1,1,1],ox:'O2',rd:'C',ex:'C: 0 → +4 (восстановитель). O: 0 → −2 (окислитель O₂).'},
+{R:['Mg','HCl'],P:['MgCl2','H2'],c:[1,2,1,1],ox:'HCl',rd:'Mg',ex:'Mg: 0 → +2 (восстановитель). H: +1 → 0 (окислитель HCl).'},
+{R:['Fe','Cl2'],P:['FeCl3'],c:[2,3,2],ox:'Cl2',rd:'Fe',ex:'Fe: 0 → +3 (восстановитель). Cl: 0 → −1 (окислитель Cl₂).'}];
+function reqHTML(r){var n=r.R.length;return r.R.map(function(f,i){return term(r.c[i],f)}).join(' + ')+' → '+r.P.map(function(f,i){return term(r.c[n+i],f)}).join(' + ')}
+function gen4(mode){
+  if(mode==='m'){var pairs=[[2,1],[3,2],[2,3],[3,4],[4,3],[2,4],[6,4],[3,6],[2,5],[1,2],[4,2],[5,4],[3,1]],p=pick(pairs),a=p[0],b=p[1],L=a*b/gcd(a,b),m1=L/a,m2=L/b,right=m1+' и '+m2;
+    var cand=[m2+' и '+m1,a+' и '+b,b+' и '+a,L+' и '+L,'1 и 1',(m1+1)+' и '+m2],set={},wr=[];set[right]=1;
+    cand.forEach(function(s){if(!set[s]){set[s]=1;wr.push(s)}});
+    var mm=mcq(right,shuf(wr).slice(0,3));
+    return {q:'Восстановитель отдаёт <b>'+a+'</b> '+E+', окислитель принимает <b>'+b+'</b> '+E+'. Какие множители надо поставить в электронном балансе (у восстановителя и у окислителя)?',opts:mm.opts,correct:mm.correct,ex:'НОК('+a+', '+b+') = '+L+'. Множитель восстановителя: '+L+' : '+a+' = '+m1+'. Множитель окислителя: '+L+' : '+b+' = '+m2+'. Ответ: '+right+'.'}}
+  var r=pick(RX),want=mode==='o'?r.ox:r.rd,all=r.R.concat(r.P),wr2=shuf(all.filter(function(f){return f!==want})).slice(0,3).map(sub),m3=mcq(sub(want),wr2);
+  return {q:'В реакции <div class="eqb">'+reqHTML(r)+'</div>найди '+(mode==='o'?'<b>окислитель</b>':'<b>восстановитель</b>')+'.',opts:m3.opts,correct:m3.correct,ex:r.ex+' Ответ: '+(mode==='o'?'окислитель ':'восстановитель ')+'<b>'+sub(want)+'</b>.'}}
+trainer('tr4',{tag:'электронный баланс',title:'Окислитель, восстановитель, множители',modes:[['o','Окислитель'],['r','Восстановитель'],['m','Множители']],gen:gen4});
+
+/* ===== три вопроса ===== */
+var Q=[
+['Степени окисления','Чему равна степень окисления серы в H₂SO₄?',['+2','+4','+6','−2'],2,'Составляем уравнение: 2 · (+1) + x + 4 · (−2) = 0, то есть 2 + x − 8 = 0, значит x = +6.'],
+['Степени окисления','Степень окисления атома выросла с 0 до +2. Что произошло?',['Атом принял 2 электрона и стал окислителем','Атом отдал 2 электрона и стал восстановителем','Атом принял 2 электрона и стал восстановителем','Атом отдал 2 электрона и стал окислителем'],1,'Рост степени окисления значит, что атом отдаёт электроны: он окисляется и является восстановителем.'],
+['Электронный баланс','В балансе P⁰ − 5e⁻ → P⁺⁵ и O₂⁰ + 4e⁻ → 2O⁻² какие множители ставят у P и у O₂ (по порядку)?',['20 и 20','5 и 4','1 и 1','4 и 5'],3,'НОК(5, 4) = 20. 20 : 5 = 4 для фосфора, 20 : 4 = 5 для O₂. Получается 4P + 5O₂ → 2P₂O₅.']];
+var ans=[],qs=$('qs');
+function nOk(){var k=0;Q.forEach(function(q,i){if(ans[i]===q[3])k++});return k}
+function nAns(){return ans.filter(function(v){return v!==undefined}).length}
+function paint(i){var d=qs.children[i],wrong=ans[i]!==undefined&&ans[i]!==Q[i][3];
+  d.querySelectorAll('.opt').forEach(function(o,k){o.setAttribute('aria-pressed',ans[i]===k?'true':'false');o.classList.toggle('ok',ans[i]!==undefined&&k===Q[i][3]);o.classList.toggle('no',ans[i]===k&&k!==Q[i][3])});
+  d.classList.toggle('bad',wrong);var dt=d.querySelector('details');if(dt)dt.open=wrong}
+Q.forEach(function(q,i){var d=document.createElement('div');d.className='q';
+  d.innerHTML='<h3><small>Вопрос '+(i+1)+' · '+q[0]+'</small>'+q[1]+'</h3><div class="opts">'+q[2].map(function(o){return '<button class="opt" type="button" aria-pressed="false">'+o+'</button>'}).join('')+'</div><details><summary>Почему так</summary><p>'+q[4]+'</p></details>';
+  qs.appendChild(d);
+  d.querySelectorAll('.opt').forEach(function(o,j){o.addEventListener('click',function(){ans[i]=j;paint(i);score()})})});
+function score(){var n=nAns(),ok=nOk();$('sc').textContent='Верно: '+ok+' из '+Q.length+' · отвечено '+n;
+  var r=$('rs3');if(n===Q.length){r.hidden=false;r.textContent=ok===3?'Подтема усвоена: 3 из 3.':ok===2?'Почти: 2 из 3. Вернуться к вопросу с ошибкой и разобрать правило.':'Результат '+ok+' из 3. Вернуться к правилам степеней окисления и к шагам электронного баланса.'}else r.hidden=true}
+score();
+
+/* копирование ДЗ */
+$('cp').addEventListener('click',function(){
+  var items=[].map.call($('hwl').children,function(li){return li.textContent.replace(/\s+/g,' ').trim()}),
+      t=$('hws').textContent.trim()+'\n\n'+items.join('\n'),m=$('cm');
+  function ok(){m.textContent='Скопировано'}
+  function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){m.textContent='Выделите текст вручную'}document.body.removeChild(a)}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()});
+
+/* плавное появление */
+var rv=[].slice.call(document.querySelectorAll('.body>*'));
+rv.forEach(function(x){x.classList.add('rv')});
+if('IntersectionObserver' in window&&!RM){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.05});rv.forEach(function(x){io.observe(x)})}
+else rv.forEach(function(x){x.classList.add('in')});
+
+/* таймер */
+var T=60*60,sec=0,run=false,iv=null,st=[].slice.call(document.querySelectorAll('.stage[data-start]'));
+function pad(n){return (n<10?'0':'')+n}
+function tick(){var m=Math.floor(sec/60),c=$('clock');c.textContent=pad(m)+':'+pad(sec%60)+' / 60:00';c.classList.toggle('over',sec>T);
+  var cu=null;st.forEach(function(s){if(m>=+s.dataset.start)cu=s});
+  st.forEach(function(s){s.classList.toggle('now',run&&s===cu)});
+  $('bs').textContent=(run||sec>0)&&cu?cu.dataset.name:'Занятие не начато'}
+$('tg').addEventListener('click',function(){run=!run;$('tg').textContent=run?'Пауза':(sec?'Продолжить':'Старт');
+  if(run)iv=setInterval(function(){sec++;tick()},1000);else clearInterval(iv);tick()});
+$('rs').addEventListener('click',function(){run=false;clearInterval(iv);sec=0;$('tg').textContent='Старт';tick()});
+tick();
+})();
+</script></body></html>
